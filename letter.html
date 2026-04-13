@@ -75,11 +75,46 @@ body {
   color: #8b0000;
   transform: translateX(-50%) scale(1.08);
 }
+
+/* CONTAINER HEART */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* HEART */
+.heart {
+  position: absolute;
+  color: rgba(255,255,255,0.7);
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+/* ANIMASI JATUH */
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(30px);
+    opacity: 0;
+  }
+}
 </style>
 </head>
 
 <body>
-
+  <div class="hearts"></div>
 <div class="container">
 
   <div class="title">💌</div>
@@ -112,6 +147,36 @@ body {
 function goBack() {
   window.location.href = "home.html";
 }
+
+const heartContainer = document.querySelector(".hearts");
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText = "🤍";
+
+  // posisi random
+  heart.style.left = Math.random() * 100 + "vw";
+
+  // ukuran random
+  const size = Math.random() * 20 + 10;
+  heart.style.fontSize = size + "px";
+
+  // durasi random
+  const duration = Math.random() * 5 + 5;
+  heart.style.animationDuration = duration + "s";
+
+  heartContainer.appendChild(heart);
+
+  // hapus setelah selesai
+  setTimeout(() => {
+    heart.remove();
+  }, duration * 1000);
+}
+
+// spawn terus
+setInterval(createHeart, 300);
+
 </script>
 
 </body>
