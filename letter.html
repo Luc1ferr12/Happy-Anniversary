@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: url('bg.jpg') no-repeat center center/cover;
+  font-family: 'Patrick Hand', cursive;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* CONTAINER */
+.container {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* TITLE */
+.title {
+  font-size: 70px;
+  letter-spacing: 6px;
+  margin-bottom: 40px;
+}
+
+/* SURAT */
+.letter-box {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+/* BACK BUTTON */
+.back {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: 2px solid white;
+
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+
+  color: white;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 18px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* hover aesthetic */
+.back:hover {
+  background: white;
+  color: #8b0000;
+  transform: translateX(-50%) scale(1.08);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="title">💌</div>
+
+  <div class="letter-box">
+    Happy Anniversary Sayangku ❤️<br><br>
+
+    Aku ga pinter buat kata kata, tapi..<br><br>
+
+    Makasih ya masih mau nemenin aku sampe sekarang.
+    Walopun baru setahun si hehe, tapi kan bukan waktu yang sebentar.<br><br>
+
+    Aku bersyukur banget punya kamu, pengertian banget, banyak banget nolongin akuu, 
+    merhatiin hal hal kecil, effort nya juga gilaa sihh❤️🥰.
+    Terus juga selalu support aku, selalu ada buat aku. Aku ga tau kalo ga ada kamu aku bakal gimana 🙁
+     <br><br>
+
+    Maaf yah kalo aku masih banyak banget kurangnya, banyak buat salah,
+    tapi aku berusaha belajar dari itu semua, biar ga ngulangin lagi☹️😚.<br><br>
+
+    Anyways, Love you,<br>
+    Dari Pacarmu Yang Paling Ganteng 👩‍❤️‍👨
+  </div>
+
+  <button class="back" onclick="goBack()">⬅ Back</button>
+
+</div>
+
+<script>
+function goBack() {
+  window.location.href = "home.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Our Memories 📸</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: url('bg.jpg') no-repeat center center/cover;
+  font-family: 'Patrick Hand', cursive;
+  overflow: hidden;
+}
+
+/* CONTAINER */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* FOTO */
+.photo {
+  position: absolute;
+  width: 250px;
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+
+  opacity: 0;
+  transform: scale(0.8) translateY(30px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photo.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.photo:hover {
+  transform: translateY(-8px) scale(1.04);
+}
+
+.photo img {
+  width: 100%;
+  display: block;
+}
+
+/* POSISI */
+.p1 {left: 10%; top: 8%; width: 180px;}
+.p2 { right: 62%; top: 8%; }
+.p3 { right: 62%; top: 53%; }
+.p4 { right: 44%; top: 8%; }
+.p5 { right: 26%; top: 8%; }
+.p6 { right: 9%; top: 53%; }
+.p7 { right: 9%; top: 8%; }
+
+/* TITLE */
+.title {
+  position: absolute;
+  top: 75%;
+  left: 56%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2; /* biar di atas foto */
+}
+
+#textTop, #textBottom {
+  font-family: 'Great Vibes', cursive;
+  font-size: 110px;
+  fill: none;
+  stroke: #ffd6e0;
+  stroke-width: 1.5;
+
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+}
+
+svg {
+  width: 700px;
+}
+
+#textPath {
+  font-family: 'Great Vibes', cursive;
+  font-size: 80px;
+  fill: none;
+  stroke: #ffd6e0;
+  stroke-width: 1.5;
+
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+}
+
+/* LOVE */
+.love {
+    position: absolute;
+  top: 77%;
+  left: 68%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2; /* biar di atas foto */
+  opacity: 0;
+  transition: 0.5s;
+  font-size: 70px; /* 🔥 ini yg bikin gede */
+}
+
+.love.show {
+  opacity: 1;
+}
+
+/* BACK */
+.back {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: 2px solid white;
+
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+
+  color: white;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 18px;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  opacity: 0;
+}
+
+/* muncul */
+.back.show {
+  opacity: 1;
+}
+
+/* hover aesthetic */
+.back:hover {
+  background: white;
+  color: #8b0000;
+  transform: translateX(-50%) scale(1.08);
+}
+
+/* klik */
+.back:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+.music-control {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+/* tombol */
+.music-control button {
+  border: none;
+  background: white;
+  color: #8b0000;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+/* slider */
+.music-control input {
+  width: 80px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- FOTO -->
+  <div class="photo p1"><img src="1.jpg"></div>
+  <div class="photo p2"><img src="2.jpg"></div>
+  <div class="photo p3"><img src="3.jpg"></div>
+  <div class="photo p4"><img src="4.jpg"></div>
+  <div class="photo p5"><img src="5.jpg"></div>
+  <div class="photo p6"><img src="6.jpg"></div>
+  <div class="photo p7"><img src="7.jpg"></div>
+
+  <!-- TEXT -->
+  <div class="title">
+
+    <svg viewBox="0 0 800 300">
+      <!-- HAPPY -->
+      <text x="50%" y="40%" text-anchor="middle" id="textTop">
+        Happy
+      </text>
+  
+      <!-- ANNIVERSARY -->
+      <text x="50%" y="70%" text-anchor="middle" id="textBottom">
+        Anniversary 
+      </text>
+    </svg>
+  </div>
+
+   <!-- LOVE -->
+  <div class="love" id="love">💝</div>
+
+
+  <button class="back" id="back" onclick="goBack()">← Back</button>
+
+  <!-- AUDIO -->
+<audio id="bgMusic" loop>
+    <source src="musicbg.mp3" type="audio/mp3">
+  </audio>
+  
+  <!-- CONTROL -->
+  <div class="music-control">
+    <button onclick="toggleMusic()" id="playBtn">⏸</button>
+    <input type="range" min="0" max="1" step="0.01" value="0.5" onchange="setVolume(this.value)">
+  </div>
+
+<script>
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("playBtn");
+
+// autoplay (harus pakai trick)
+window.addEventListener("load", () => {
+    music.volume = 0;
+let vol = 0;
+
+const fade = setInterval(() => {
+  if (vol < 0.5) {
+    vol += 0.02;
+    music.volume = vol;
+  } else {
+    clearInterval(fade);
+  }
+}, 100);
+
+  const playPromise = music.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // kalau diblock browser, play pas klik pertama
+      document.body.addEventListener("click", () => {
+        music.play();
+      }, { once: true });
+    });
+  }
+});
+
+// play pause
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    btn.innerText = "⏸";
+  } else {
+    music.pause();
+    btn.innerText = "▶";
+  }
+}
+
+// volume
+function setVolume(val) {
+  music.volume = val;
+}
+
+function goBack() {
+  window.location.href = "home.html";
+}
+
+/* ANIMASI TEXT */
+function animateText() {
+  const top = document.getElementById("textTop");
+  const bottom = document.getElementById("textBottom");
+  const love = document.getElementById("love");
+
+  // reset
+  [top, bottom].forEach(el => {
+    el.style.transition = "none";
+    el.style.strokeDashoffset = 1200;
+  });
+
+  love.classList.remove("show");
+
+  // Happy dulu
+  setTimeout(() => {
+    top.style.transition = "stroke-dashoffset 2s ease";
+    top.style.strokeDashoffset = 0;
+  }, 100);
+
+  // Anniversary nyusul
+  setTimeout(() => {
+    bottom.style.transition = "stroke-dashoffset 2s ease";
+    bottom.style.strokeDashoffset = 0;
+  }, 1800);
+
+  // Love muncul terakhir
+  setTimeout(() => {
+    love.classList.add("show");
+  }, 3500);
+}
+
+/* LOAD */
+window.onload = () => {
+  const photos = document.querySelectorAll(".photo");
+
+  // animasi foto
+  photos.forEach((photo, index) => {
+    setTimeout(() => {
+      photo.classList.add("show");
+    }, index * 200);
+  });
+
+  // animasi tulisan
+  animateText();
+
+  // looping tiap 5 detik
+  setInterval(() => {
+    animateText();
+  }, 5000);
+
+  // tombol back terakhir muncul
+  setTimeout(() => {
+    document.getElementById("back").classList.add("show");
+  }, photos.length * 200 + 800);
+};
+</script>
+
+</body>
+</html>

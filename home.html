@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ini Buat Kita ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: url('bg.jpg') no-repeat center center/cover;
+  color: white;
+  font-family: 'Patrick Hand', cursive;
+  overflow: hidden;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ANIMASI BASE */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TITLE */
+h1 {
+  font-size: 80px;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+}
+
+/* SUBTEXT */
+.sub {
+  font-size: 24px;
+  opacity: 0.8;
+}
+
+/* LINE */
+.line {
+  width: 300px;
+  height: 2px;
+  background: white;
+  margin: 20px auto 50px;
+  opacity: 0.5;
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+}
+
+.icon-box {
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.icon {
+  font-size: 90px;
+}
+
+.label {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.icon-box:hover {
+  transform: scale(1.15);
+}
+
+/* PITA */
+.ribbon-left {
+  position: absolute;
+  left: 400px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 50vh;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.ribbon-right {
+  position: absolute;
+  right: 400px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 50vh;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.ribbon-show {
+  opacity: 1;
+}
+
+/* LOVE */
+.heart1 {
+  position: absolute;
+  bottom: 40px;
+  left: 80px;
+  font-size: 30px;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.heart2 {
+  position: absolute;
+  bottom: 60px;
+  right: 80px;
+  font-size: 25px;
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.heart-show {
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- PITA -->
+  <img src="daun kiri.png" class="ribbon-left" id="ribbonL">
+  <img src="daun kanan.png" class="ribbon-right" id="ribbonR">
+
+  <h1 class="fade" id="title">365 DAYS 🤍</h1>
+  <div class="sub fade" id="sub">little things I made for you 🤍</div>
+
+  <div class="line fade" id="line"></div>
+
+  <!-- MENU -->
+  <div class="menu fade" id="menu">
+    
+    <div class="icon-box" onclick="go('foto.html')">
+      <div class="icon">📷</div>
+      <div class="label">Memories</div>
+    </div>
+
+    <div class="icon-box" onclick="go('music.html')">
+      <div class="icon">🎧</div>
+      <div class="label">Our Song</div>
+    </div>
+
+    <div class="icon-box" onclick="go('letter.html')">
+      <div class="icon">💌</div>
+      <div class="label">Message</div>
+    </div>
+
+  </div>
+
+  <!-- LOVE -->
+  <div class="heart1" id="h1">🤍</div>
+  <div class="heart2" id="h2">🤍</div>
+
+</div>
+
+<script>
+function go(page) {
+  window.location.href = page;
+}
+
+/* ANIMASI MASUK BERURUTAN */
+window.onload = () => {
+  setTimeout(() => document.getElementById("title").classList.add("show"), 200);
+  setTimeout(() => document.getElementById("sub").classList.add("show"), 400);
+  setTimeout(() => document.getElementById("line").classList.add("show"), 600);
+  setTimeout(() => document.getElementById("menu").classList.add("show"), 800);
+
+  setTimeout(() => {
+    document.getElementById("ribbonL").classList.add("ribbon-show");
+    document.getElementById("ribbonR").classList.add("ribbon-show");
+  }, 1000);
+
+  setTimeout(() => {
+    document.getElementById("h1").classList.add("heart-show");
+    document.getElementById("h2").classList.add("heart-show");
+  }, 1200);
+};
+</script>
+
+</body>
+</html>
